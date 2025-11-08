@@ -6,6 +6,6 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", "5792951787"))
 DATABASE_PATH = os.getenv("DATABASE_PATH", "bot_data.db")
 
 PORT = 8000
-SELF_URL ="https:/render.com"
+SELF_URL ="https://mini-zyou.onrender.com"
 
 KEEP_ALIVE_INTERVAL = 600  # 10 daqiqa
