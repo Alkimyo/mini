@@ -476,8 +476,19 @@ async def keep_alive_ping():
 
 async def main():
     """Asosiy funksiya"""
-    # Application yaratish
-    application = Application.builder().token(BOT_TOKEN).build()
+    # Application yaratish (kompatibilik uchun)
+    try:
+        # Birinchi usul: Builder pattern (eski versialar)
+        application = Application.builder().token(BOT_TOKEN).build()
+    except AttributeError:
+        try:
+            # Ikkinchi usul: To'g'ri Application (yangi versialar)
+            application = Application(token=BOT_TOKEN)
+        except Exception as e:
+            logger.error(f"Application yaratish xatosi: {e}")
+            # Uchinchi usul: Builder pattern odatiy usul
+            application = Application()
+            application.token = BOT_TOKEN
     
     # Handlerlarni qo'shish
     application.add_handler(CommandHandler("start", start))
